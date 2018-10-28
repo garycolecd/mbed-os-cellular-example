@@ -1,0 +1,4 @@
+[submodule "mbed-os"]
+	path = mbed-os
+	url = git@github.com:garycolecd/mbed-os.git
+	branch = mbed-os-5.10
