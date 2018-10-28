@@ -30,20 +30,34 @@
             "macro_name": "MBED_TRACE_MAX_LEVEL",
             "value": "TRACE_LEVEL_INFO"
         }
-  },
+    },
+    
+    "macros": ["CELLULAR_DEVICE=UBLOX_AT"],
+  
     "target_overrides": {
         "*": {
             "target.features_add": ["LWIP"],
-            "mbed-trace.enable": false,
-            "lwip.ipv4-enabled": true,
-            "lwip.ethernet-enabled": false,
-            "lwip.ppp-enabled": true,
-            "lwip.tcp-enabled": true,
+            
             "platform.stdio-convert-newlines": true,
             "platform.stdio-baud-rate": 115200,
             "platform.default-serial-baud-rate": 115200,
             "platform.stdio-buffered-serial": true,
-            "cellular.debug-at": false
+            
+            "drivers.uart-serial-txbuf-size": 1024,
+            "drivers.uart-serial-rxbuf-size": 1024,
+            "mbed-trace.enable": false,
+            
+            "lwip.ipv4-enabled": true,
+            "lwip.ethernet-enabled": false,
+            "lwip.ppp-enabled": true,
+            "lwip.tcp-enabled": true,
+            "lwip.tcpip-thread-stacksize": 2048,
+            "lwip.ppp-thread-stacksize": 2048,
+            
+            "cellular.debug-at": false,
+            "cellular.use-apn-lookup": false,
+            "ppp-cell-iface.apn-lookup": false
+            
         }
     }
 }

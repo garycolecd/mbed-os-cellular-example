@@ -27,15 +27,20 @@
 # define MBED_CONF_APP_SIM_PIN_CODE    "1234"
 #endif
 
-#ifndef MBED_CONF_APP_APN
-# define MBED_CONF_APP_APN         "internet"
+#ifdef MBED_CONF_APP_APN
+#undef MBED_CONF_APP_APN
 #endif
-#ifndef MBED_CONF_APP_USERNAME
-# define MBED_CONF_APP_USERNAME    NULL
+#define MBED_CONF_APP_APN         "m2m.com.attz"
+
+#ifdef MBED_CONF_APP_USERNAME
+#undef MBED_CONF_APP_USERNAME
 #endif
-#ifndef MBED_CONF_APP_PASSWORD
-# define MBED_CONF_APP_PASSWORD    NULL
+#define MBED_CONF_APP_USERNAME    NULL
+
+#ifdef MBED_CONF_APP_PASSWORD
+#undef MBED_CONF_APP_PASSWORD
 #endif
+#define MBED_CONF_APP_PASSWORD    NULL
 
 // Number of retries /
 #define RETRY_COUNT 3
@@ -43,10 +48,10 @@
 CellularBase *iface;
 
 // Echo server hostname
-const char *host_name = MBED_CONF_APP_ECHO_SERVER_HOSTNAME;
+const char *host_name = "52.215.34.155"; //"174.99.222.202";
 
 // Echo server port (same for TCP and UDP)
-const int port = MBED_CONF_APP_ECHO_SERVER_PORT;
+const int port = 7; //5558;
 
 static rtos::Mutex trace_mutex;
 
@@ -90,7 +95,7 @@ static void trace_close()
 }
 #endif // #if MBED_CONF_MBED_TRACE_ENABLE
 
-Thread dot_thread(osPriorityNormal, 512);
+Thread dot_thread(osPriorityNormal, 2048);
 
 void print_function(const char *format, ...)
 {
